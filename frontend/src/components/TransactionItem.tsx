@@ -8,14 +8,22 @@ import {
   Stack,
   Text,
   Box,
+  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import { truncateAddress } from "../helpers/truncateAddress";
 import { AccordionItemContext } from "../types/chakra/Accordion";
 
-interface TransactionItemProps {}
+interface TransactionItemProps {
+  transaction: any;
+}
 
-export const TransactionItem: React.FC<TransactionItemProps> = () => {
+export const TransactionItem: React.FC<TransactionItemProps> = ({
+  transaction,
+}) => {
+  console.log("-----------");
+  console.log(transaction);
+
   return (
     <Accordion allowToggle>
       <AccordionItem
@@ -30,13 +38,23 @@ export const TransactionItem: React.FC<TransactionItemProps> = () => {
           <>
             <h2>
               <AccordionButton>
-                <Box
-                  flex="1"
-                  textAlign="left"
-                  fontWeight={isExpanded ? "bold" : "normal"}
-                >
-                  Transaction INFO
-                </Box>
+                <Flex flex="1" justifyContent={"space-between"}>
+                  <Box
+                    textAlign="left"
+                    fontWeight={isExpanded ? "bold" : "normal"}
+                  >
+                    {truncateAddress(transaction.txHash, 25)}
+                  </Box>
+                  <Box
+                    textAlign="left"
+                    fontWeight={isExpanded ? "bold" : "normal"}
+                    mr={"30px"}
+                  >
+                    {new Date(
+                      transaction.blockTime * 1000
+                    ).toLocaleTimeString()}
+                  </Box>
+                </Flex>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
@@ -46,29 +64,21 @@ export const TransactionItem: React.FC<TransactionItemProps> = () => {
                   <Text fontWeight={"bold"} color={"gray.400"}>
                     Date:{" "}
                   </Text>
-                  <Text>{new Date(Date.now()).toLocaleString()}</Text>
+                  <Text>
+                    {new Date(transaction.blockTime * 1000).toLocaleString()}
+                  </Text>
                 </Flex>
                 <Flex justifyContent={"space-between"}>
                   <Text fontWeight={"bold"} color={"gray.400"}>
                     From:{" "}
                   </Text>
-                  <Text>
-                    {truncateAddress(
-                      "BdrQntjRYTAmFLVzZaHnMr2kUfc9Jkk5SxGUk5FCG7Cc",
-                      30
-                    )}
-                  </Text>
+                  <Text>{truncateAddress(transaction.signer[0], 30)}</Text>
                 </Flex>
                 <Flex justifyContent={"space-between"}>
                   <Text fontWeight={"bold"} color={"gray.400"}>
                     To:{" "}
                   </Text>
-                  <Text>
-                    {truncateAddress(
-                      "BdrQntjRYTAmFLVzZaHnMr2kUfc9Jkk5SxGUk5FCG7Cc",
-                      30
-                    )}
-                  </Text>
+                  <Text>{truncateAddress(transaction.signer[0], 30)}</Text>
                 </Flex>
 
                 <Flex justifyContent={"space-between"}>

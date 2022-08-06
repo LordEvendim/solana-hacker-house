@@ -10,3 +10,13 @@ export type AsyncActionState =
       error: Error;
     }
   | { status: undefined };
+
+export type AsyncRequestResult =
+  | {
+      status: "succeeded";
+      value: any;
+    }
+  | {
+      status: "failed";
+      error: Error;
+    };

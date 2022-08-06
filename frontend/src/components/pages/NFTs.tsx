@@ -1,21 +1,13 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
-  Text,
   Container,
   Flex,
   Heading,
-  Stack,
   Button,
   Skeleton,
 } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { AccordionItemContext } from "../../types/chakra/Accordion";
 
 interface NFTsProps {}
 

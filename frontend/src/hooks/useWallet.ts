@@ -17,7 +17,6 @@ export const useWallet = (): useWalletType => {
   const connectWallet = useCallback(async () => {
     try {
       setIsConnecting(true);
-      console.log(window.solana);
       if (!window.solana) throw new Error("Cannot find Phantom wallet");
 
       const result = await window.solana.connect();

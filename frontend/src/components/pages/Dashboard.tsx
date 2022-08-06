@@ -9,14 +9,24 @@ import {
   Text,
   Stack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTransactionHistory } from "../../stores/useTransactionHistory";
 import { NFTItem } from "../NFTItem";
 import { TransactionItem } from "../TransactionItem";
 
 interface DashboardProps {}
 
 export const Dashboard: React.FC<DashboardProps> = () => {
+  const fetchTransactionHistory = useTransactionHistory(
+    (state) => state.fetchTransactions
+  );
+  const transactions = useTransactionHistory((state) => state.transactions);
+
+  useEffect(() => {
+    fetchTransactionHistory();
+  }, [fetchTransactionHistory]);
+
   return (
     <Container w={"full"} centerContent>
       <Box h={"10"} />
@@ -46,8 +56,8 @@ export const Dashboard: React.FC<DashboardProps> = () => {
             </Flex>
 
             <Stack mt={"20px"}>
-              {[...new Array(9)].map(() => (
-                <TransactionItem />
+              {transactions.map((element) => (
+                <TransactionItem transaction={element} />
               ))}
             </Stack>
           </GridItem>

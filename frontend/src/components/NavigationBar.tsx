@@ -43,7 +43,13 @@ export const NavigationBar: React.FC<NavigationBarProps> = () => {
           </Button>
 
           {useUserData.getState().isLogged ? (
-            <Button variant={"outline"} bg={"white"} h={12}>
+            <Button
+              variant={"outline"}
+              bg={"white"}
+              h={12}
+              borderRadius={"2xl"}
+              px={"20px"}
+            >
               <HStack>
                 <Text>{truncateAddress(userAddress, 20)}</Text>
                 <CloseButton onClick={disconnectWallet} size="sm" />

@@ -12,15 +12,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { useWindowSize } from "react-use";
 import { AccordionItemContext } from "../../types/chakra/Accordion";
-import Confetti from "react-confetti";
 
 interface TransactionHistoryProps {}
 
 export const TransactionHistory: React.FC<TransactionHistoryProps> = () => {
-  const { width, height } = useWindowSize();
-
   return (
     <>
       <Container w={"full"} centerContent mb={"80px"}>

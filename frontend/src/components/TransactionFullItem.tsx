@@ -1,14 +1,11 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface TransactionFullItemProps {}
 
 export const TransactionFullItem: React.FC<TransactionFullItemProps> = () => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  const navigate = useNavigate();
-
   const ButtonMotion = motion(Button);
 
   const variants = {
